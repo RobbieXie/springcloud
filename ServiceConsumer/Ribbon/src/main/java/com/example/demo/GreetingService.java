@@ -10,16 +10,16 @@ import org.springframework.web.client.RestTemplate;
  * @version v0.1 2017/6/12.
  */
 @Service
-public class ComputeService {
+public class GreetingService {
     @Autowired
     RestTemplate restTemplate;
 
-    @HystrixCommand(fallbackMethod = "addServiceFallback")
-    public String addService() {
-        return restTemplate.getForEntity("http://COMPUTE-SERVICE/add?name=Ribbon&a=10&b=20", String.class).getBody();
+    @HystrixCommand(fallbackMethod = "greetFallback")
+    public String greet() {
+        return restTemplate.getForEntity("http://GREETING-SERVICE/greet?name=Ribbon", String.class).getBody();
     }
 
-    public String addServiceFallback() {
+    public String greetFallback() {
         return "error";
     }
 }

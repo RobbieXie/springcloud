@@ -36,7 +36,7 @@ public class SimpleFilter extends ZuulFilter {
         HttpServletRequest request = ctx.getRequest();
         log.info(String.format("%s request to %s", request.getMethod(), request.getRequestURL().toString()));
         Object accessToken = request.getParameter("token");
-        if(!accessToken.toString().equals("tiandi")) {
+        if(accessToken==null || !accessToken.toString().equals("tiandi") ) {
             log.warn("access token is wrong");
             ctx.setSendZuulResponse(false);
             ctx.setResponseStatusCode(401);

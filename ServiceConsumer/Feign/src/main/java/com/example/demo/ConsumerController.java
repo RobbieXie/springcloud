@@ -1,9 +1,12 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @author 谢天帝
@@ -12,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ConsumerController {
 
-    @Autowired
-    ComputeClient computeClient;
+    @Resource
+    GreetingService greetingService;
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/greet", method = RequestMethod.GET)
     public String add() {
-        return computeClient.add("Feign",10, 20);
+        return greetingService.greet("Feign");
     }
 }

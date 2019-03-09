@@ -17,4 +17,5 @@ public class ZuulApplication {
 	public SimpleFilter simpleFilter() {
 		return new SimpleFilter();
 	}
+
 }
